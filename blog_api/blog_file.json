@@ -4,7 +4,14 @@
     "content": "Love the moon!",
     "user_id": 100,
     "post_id": 138592130082398960,
-    "review": [],
+    "review": [
+      {
+        "user_id": 240,
+        "comment": "I am more of a sun guy",
+        "recommended_content": false,
+        "comment_id": 138592833596975750
+      }
+    ],
     "date": null
   },
   {
@@ -55,6 +62,36 @@
         "comment": "Love snow",
         "recommended_content": true,
         "comment_id": 138592334688209010
+      },
+      {
+        "user_id": 500,
+        "comment": "Yes, this is nice stuff",
+        "recommended_content": true,
+        "comment_id": 138592904349986870
+      },
+      {
+        "user_id": 600,
+        "comment": "No, I will never agree",
+        "recommended_content": false,
+        "comment_id": 138592906999012970
+      },
+      {
+        "user_id": 500,
+        "comment": "Nope, dont agree",
+        "recommended_content": false,
+        "comment_id": 138592907157832210
+      },
+      {
+        "user_id": 500,
+        "comment": "Yes sir",
+        "recommended_content": true,
+        "comment_id": 138592912316490980
+      },
+      {
+        "user_id": 500,
+        "comment": "Totally",
+        "recommended_content": true,
+        "comment_id": 138592912443321570
       }
     ],
     "date": null,

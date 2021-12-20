@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 BASE_URL = "/api/v1"
 
+
 def read_all_books():
     with open("books.json", "r") as books_file:
         return json.load(books_file)    # Returns a python dict

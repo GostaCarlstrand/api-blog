@@ -28,6 +28,28 @@ def save_data(data):
         json.dump(data, blog_file, indent=2)
 
 
+@app.get(BASE_URL + "/posts/post/is_recommended/<post_id>")
+def get_post_recommended(post_id):
+    posts = read_all_posts()
+    if posts:
+        post = find_post_recursive(int(post_id), posts, (len(posts) - 1), 0, None)
+        if post:
+            if post["review"]:
+                if is_post_recommended(post):
+                    return Response(json.dumps(True), 200, content_type="application/json")
+                else:
+                    return Response(json.dumps(False), 200, content_type="application/json")
+    return Response('{"status: can not find any posts}', 404, content_type="application/json")
+
+
+def is_post_recommended(post):
+    like = 0
+    for review in post["review"]:
+        if review["recommended_content"]:
+            like += 1
+    return int(len(post["review"])/2) < like
+
+
 def find_post_recursive(post_id, posts, high_index, low_index, memory_index):
     middle_index = int((low_index+high_index)/2)  # In the middle
     if middle_index == memory_index:
@@ -62,7 +84,7 @@ def get_all_posts():
     if posts:
         return Response(json.dumps(posts),
                         200, content_type="application/json")
-    return Response('{"status" : "not found"}', 404, content_type="application/json")
+    return Response('{"status" : "no posts found"}', 404, content_type="application/json")
 
 
 @app.get(BASE_URL + "/posts/headlines")
@@ -73,7 +95,7 @@ def get_all_headlines():
         for post in posts:
             list_with_headlines.append(post["headline"])
         return Response(json.dumps(list_with_headlines), 200, content_type="application/json")
-    return Response('{"status" : "not found"}', 404, content_type="application/json")
+    return Response('{"status" : "no headlines found"}', 404, content_type="application/json")
 
 
 @app.post(BASE_URL + "/posts/post")
@@ -102,13 +124,13 @@ def post_comment_to_author(comment_id):
     posts = read_all_posts()
     unique_id = generate_unique_id()
     data["comment_id"] = unique_id.time
-    for post in posts:
-        if post["post_id"] == int(comment_id):
-            post["review"].append(data)
-            save_data(posts)
-            return Response('{"status" : "created"}', 201, content_type="application/json")
-    return Response('{"status" : "ERROR" ' + comment_id + 'is not valid}',
-                          400, content_type="application/json")
+    post = find_post_recursive(comment_id, posts, (len(posts)-1), 0, None)
+    if post:
+        post["review"].append(data)
+        save_data(posts)
+        return Response('{"status" : "created"}', 201, content_type="application/json")
+    return Response('{"status" : "ERROR" ' + comment_id + 'is not valid}'
+                    , 400, content_type="application/json")
 
 
 def generate_unique_id():
