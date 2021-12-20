@@ -1,0 +1,38 @@
+{
+    "id": 9,
+    "author": "Chinua Achebe",
+    "country": "Nigeria",
+    "language": "English",
+    "link": "https://en.wikipedia.org/wiki/Things_Fall_Apart\n",
+    "pages": 209,
+    "title": "Things Fall Apart",
+    "year": 1958,
+    "reviews": [
+      {
+        "id": 1,
+        "reviewer_id": 2,
+        "review_score": 4,
+        "review_title": "A decent book",
+        "review_body": "A reather good book, takes a few of hours to finish",
+        "links": [
+          {
+            "href": "/books/1/reviews/1",
+            "rel": "self",
+            "type": "GET"
+          },
+          {
+            "href": "/users/2",
+            "rel": "reviewer",
+            "type": "GET"
+          }
+        ]
+      }
+    ],
+  "links": [
+    {
+      "href": "/books/1",
+      "rel": "self",
+      "type": "GET"
+    }
+  ]
+  }

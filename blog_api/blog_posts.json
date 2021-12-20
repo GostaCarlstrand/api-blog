@@ -1,0 +1,34 @@
+{
+  "posts":
+    {
+      "date": [
+        {
+          "20211216": { "post": [
+              {
+                "text": "Today I did this",
+                "user_id": 10,
+                "recommended_content": null
+              },
+              {
+                "text": "This day was sunny",
+                "user_id": 11,
+                "recommended_content": null
+              }
+            ]
+          }
+        },
+        {
+          "20211217": {
+            "post": [
+              {
+                "text": "Today I did something else",
+                "user_id": 11,
+                "recommended_content": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+
+}
